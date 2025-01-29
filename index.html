@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla Principal</title>
+    <style>
+        body {
+            font-family: cursive;
+            text-align: center;
+            background: linear-gradient(to bottom, #87CEFA, #f1f7f8);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 5px 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        nav, ul, li, a:hover {
+            background-color: #92b7d6;
+            text-shadow: 1px 1px 2px #054172;
+        }
+
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #054172;
+        }
+
+        h3 {
+            font-family: cursive;
+            margin-top: -15px;
+            color: #82a2bd;
+            text-shadow: 1px 1px 2px #ffffff;
+        }
+
+        .bubble {
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .bubble:hover {
+            transform: scale(1.1);
+        }
+
+        .bubble:nth-child(4) {
+            background-image: url('burbuja.png');
+        }
+
+        .bubble:nth-child(5) {
+            background-image: url('burbuja.png');
+        }
+
+        .bubble:nth-child(6) {
+            background-image: url('burbuja.png');
+        }
+
+        .bubble:nth-child(7) {
+            background-image: url('burbuja.png');
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #487fac;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            .bubble {
+                width: 150px;
+                height: 150px;
+            }
+
+            div {
+                width: 80px;
+                height: 80px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            nav ul li a {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 0.9rem;
+            }
+
+            .bubble {
+                width: 100px;
+                height: 100px;
+            }
+
+            div {
+                width: 60px;
+                height: 60px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="SobreMi.html">Sobre mí</a></li>
+            <li><a href="Proyectos.html">Proyectos</a></li>
+            <li><a href="Habilidades.html">Habilidades</a></li>
+            <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <h1>Victoria Ortega Orozco</h1>
+    <h3>Ingeniería en desarrollo de software</h3>
+    
+    <div class="bubble" onclick="handleClick(event, this)" style="top: 20%; left: 50%;" <a href="SobreMi.html"></a>Sobre mí</div>
+    
+    <div class="bubble" onclick="handleClick(event, this)" style="top: 30%; left: 60%;" <a href="Proyectos.html"></a>Proyectos</div>
+    <div class="bubble" onclick="handleClick(event, this)" style="top: 40%; left: 70%;" <a href="Habilidades.html"></a>Habilidades</div>
+    <div class="bubble" onclick="handleClick(event, this)" style="top: 50%; left: 80%;" <a href="Contacto.html"></a>Contacto</div>
+
+    <script>
+        function handleClick(event, element) {
+            event.preventDefault();
+            element.classList.add('hidden');
+            setTimeout(() => {
+                window.location.href = element.getAttribute('href');
+            }, 300);
+        }
+
+        function moveBubbles() {
+    const bubbles = document.querySelectorAll('.bubble');
+    const minDistance = 20; // Distancia mínima entre burbujas en porcentaje
+
+    const positions = []; // Almacenar las posiciones generadas
+
+    bubbles.forEach(bubble => {
+        let x, y, isTooClose;
+
+        do {
+            x = Math.random() * 85; // Generar posición aleatoria en el ancho total
+            y = Math.random() * 85; // Generar posición aleatoria en el alto total
+
+            // Verificar si la posición está demasiado cerca de otras burbujas
+            isTooClose = positions.some(([px, py]) => {
+                const distance = Math.sqrt(Math.pow(px - x, 2) + Math.pow(py - y, 2));
+                return distance < minDistance;
+            });
+
+        } while (isTooClose);
+
+        positions.push([x, y]); // Guardar la posición válida
+        bubble.style.top = y + '%';
+        bubble.style.left = x + '%';
+    });
+}
+
+
+
+        setInterval(moveBubbles, 2000); // Move bubbles every 2 seconds
+    </script>
+</body>
+</html>
+
+

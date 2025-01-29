@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: #92b7d6;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: right;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 2px 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+            text-shadow: 1px 1px 2px #054172;
+        }
+
+        #home {
+            position: absolute;
+            left: 0%;
+            top:0%;
+            padding-left: 1%;
+        }
+
+        body {
+            font-family: cursive;
+            background: linear-gradient(to bottom, #f1f7f8, #87CEFA);
+            margin: 0;
+            padding: 0px;
+            height: 150vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            padding: 20px;
+            margin-top: 1px; /* Para que el contenido no quede tapado por el nav */
+        }
+
+        h1, h3, p, li {
+            color: #054172;
+        }
+
+        h1, h3 {
+            text-shadow: 1px 1px 2px white;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        #burbuja {
+            width: 100px;
+        }
+
+        #bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            background-image: url('burbuja.png'); /* Asegúrate de que la ruta sea correcta */
+            background-size: cover;
+            animation: bubbleAnimation 5s infinite;
+        }
+
+        @keyframes bubbleAnimation {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <img src="home.png" id="home"
+                    alt="Home" style="width: 30px; height: 30px; vertical-align: middle;">
+                </a>
+            </li>
+            <li><a href="SobreMi.html">Sobre mí</a></li>
+            <li><a href="Proyectos.html">Proyectos</a></li>
+            <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1><img src="burbuja.png" id="burbuja">Habilidades</h1>
+
+        <h3>Front-end</h3>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>UX</li>
+        </ul>
+
+        <h3>Back-end</h3>
+        <ul>
+            <li>.NET</li>
+            <li>C#</li>
+            <li>Java</li>
+            <li>Python</li>
+        </ul>
+
+        <h3>Ciencia de datos</h3>
+        <ul>
+            <li>MySQL</li>
+            <li>Pandas</li>
+            <li>Matplotlib</li>
+            <li>Python</li>
+        </ul>
+
+        <h3>Complementos</h3>
+        <ul>
+            <li>SCRUM</li>
+            <li>Figma</li>
+            <li>Git</li>
+            <li>IDEs: Jupyter, Visual Studio Code, NetBeans, IntelliJ IDEA</li>
+        </ul>
+    </div>
+
+    <div id="bubbles"></div>
+
+    <script>
+        function createBubbles() {
+            const bubbleCount = 30; // Número de burbujas a generar
+            const container = document.getElementById('bubbles');
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                // Asignamos tamaños y posiciones aleatorias
+                const size = Math.random() * 50 + 20; // tamaño entre 20px y 70px
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.animationDuration = `${Math.random() * 3 + 2}s`; // duración aleatoria para que se muevan a diferentes velocidades
+
+                container.appendChild(bubble);
+
+                // Eliminar la burbuja después de que haya terminado su animación
+                setTimeout(() => {
+                    bubble.remove();
+                }, 5000); // Después de 5 segundos, eliminar la burbuja
+            }
+        }
+
+        // Ejecutar la función al cargar la página
+        window.onload = createBubbles;
+    </script>
+
+</body>
+</html>

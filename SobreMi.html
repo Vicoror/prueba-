@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+     nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: #92b7d6;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: right;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 2px 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+            text-shadow: 1px 1px 2px #054172;
+        }
+
+        #home {
+            position: absolute;
+            left: 0%;
+            top:0%;
+            padding-left: 1%;
+        }
+
+        body {
+            font-family: cursive;
+            background: linear-gradient(to bottom, #f1f7f8, #87CEFA);
+            margin: 0;
+            padding: 20px;
+            height: 180vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .container {
+        max-width: 1200px; /* Controla el ancho máximo */
+        width: 90%;        /* Ajusta el ancho al contenedor */
+        padding: 20px;
+        text-align: center;
+        }
+
+        h1,h3,p,li{
+            color:#054172;
+        }
+
+        h1,h3{
+            text-shadow: 1px 1px 2px white;
+        }
+
+        @media (max-width: 480px) {
+
+        nav ul li a {
+            font-size: 0.8rem;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            font-size: 0.9rem;
+        } }
+
+        @media (max-width: 768px) {
+    body {
+        padding: 1dvb;
+    }
+
+    .container {
+        width: 95%;
+    }
+}
+
+#burbuja{
+        width: 100px;
+    }
+
+    #bubbles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  background-image: url('burbuja.png'); /* Asegúrate de que la ruta sea correcta */
+  background-size: cover; /* Ajusta la imagen para que se adapte al tamaño de la burbuja */
+  animation: bubbleAnimation 5s infinite;
+}
+
+@keyframes bubbleAnimation {
+  0% {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  } }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <img src="home.png" id="home"
+                    alt="Home" style="width: 30px; height: 30px; vertical-align: middle;">
+                </a>
+            </li>
+            <li><a href="Proyectos.html">Proyectos</a></li>
+            <li><a href="Habilidades.html">Habilidades</a></li>
+            <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <h1><img src="burbuja.png" id="burbuja">Sobre mí</h1>
+    <p>Apasionada de la creación tecnológica, ocupada en dar soluciones
+        que satisfagan al usuario bribdándole una experiencia única y agradable.</p>
+    
+    <h3> Estudios</h3>
+    <p>Estudios en Ingeniería en desarrollo de software en la  
+        Universidad Abierta y a Distancia de México "UNADM".</p>
+    <p>Comunicóloga egresada de la Universidad Nacional Autónoma de México "UNAM". </p>
+
+    <h3>Mis Hobbies</h3>
+    <ul>
+        <li>Aprender lenguajes de programación.</li>
+        <li>Practicar francés.</li>
+        <li>Hacer velas.</li>
+        <li>Ir al cine y cuidar a mis gatos.</li>
+    </ul>
+    <div id="bubbles"></div>
+
+    <script>
+        function createBubbles() {
+  const bubbleCount = 30; // Número de burbujas a generar
+  const container = document.getElementById('bubbles');
+
+  for (let i = 0; i < bubbleCount; i++) {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+
+    // Asignamos tamaños y posiciones aleatorias
+    const size = Math.random() * 50 + 20; // tamaño entre 20px y 70px
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${Math.random() * 100}%`;
+    bubble.style.animationDuration = `${Math.random() * 3 + 2}s`; // duración aleatoria para que se muevan a diferentes velocidades
+
+    container.appendChild(bubble);
+
+    // Eliminar la burbuja después de que haya terminado su animación
+    setTimeout(() => {
+      bubble.remove();
+    }, 5000); // Después de 5 segundos, eliminar la burbuja
+  }
+}
+
+// Ejecutar la función al cambiar de página
+window.onload = createBubbles;
+
+    </script>
+</body>
+</html>

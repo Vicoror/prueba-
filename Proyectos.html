@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: #92b7d6;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: right;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 2px 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+            text-shadow: 1px 1px 2px #054172;
+        }
+
+        #home {
+            position: absolute;
+            left: 0%;
+            top:0%;
+            padding-left: 1%;
+        }
+
+        body {
+            font-family: cursive;
+            background: linear-gradient(to bottom, #f1f7f8, #87CEFA);
+            margin: 0;
+            padding: 0px;
+            height: 170vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            padding: 20px;
+            margin-top: 1px; /* Para que el contenido no quede tapado por el nav */
+        }
+
+        h1, h3, p, li {
+            color: #054172;
+        }
+
+        h1, h3 {
+            text-shadow: 1px 1px 2px white;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        #burbuja {
+            width: 100px;
+        }
+
+        #bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            background-image: url('burbuja.png'); /* Asegúrate de que la ruta sea correcta */
+            background-size: cover;
+            animation: bubbleAnimation 5s infinite;
+        }
+
+        @keyframes bubbleAnimation {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        .carousel {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-buttons button {
+            background-color: #92b7d6;
+            color: #fff;
+            text-shadow: 2px 2px 4px #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .carousel-buttons button:hover {
+            background-color: #054172;
+          
+        }
+
+    
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <img src="home.png" id="home" 
+                    alt="Home" style="width: 30px; height: 30px; vertical-align: middle;">
+                </a>
+            </li>
+            <li><a href="SobreMi.html">Sobre mí</a></li>
+            <li><a href="Habilidades.html">Habilidades</a></li>
+            <li><a href="Contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1><img src="burbuja.png" id="burbuja">Proyectos</h1>
+        <div id="net">
+            <h2>Back-end</h2>
+            <h3>C#/.NET</h3>
+            <p> Creación de proyectos básicos como: 
+            <ul>
+                <li>Programa para capturar y validar información financiera.</li>
+                <li>Desarrollo de agenda electrónica usando arreglos bidimensionales.</li>
+                <li>Programa para gestionar proyectos medioambientales.</li>
+            </ul>
+            </p>
+            <!-- Carrusel insertado -->
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="imagen1.JPG" alt="Imagen 1">
+                    <img src="imagen2.JPG" alt="Imagen 2">
+                    <img src="imagen3.JPG" alt="Imagen 3">
+                </div>
+                <div class="carousel-buttons">
+                    <button id="prev">←</button>
+                    <button id="next">→</button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3>Java</h3>
+            <p> Creación de distintos proyectos básicos.
+                <ul>
+                    <li>Diseño de formularios (interfaces).</li>
+                    <li>Conexión de bases de datos.</li>
+                    <li>Programas básicos, clases, excepciones, encapsulamiento, etcétera.</li>
+                </ul>
+            </p>
+            <!-- Carrusel insertado -->
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="java1.JPG" alt=" java1">
+                    <img src="java2.JPG" alt="java2">
+                    <img src="java3.JPG" alt="java3">
+                </div>
+                <div class="carousel-buttons">
+                    <button id="prev-java">←</button>
+                    <button id="next-java">→</button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3>NodeJS</h3>
+            <ul>
+                <li>Uso de módulos como: nodemailer. </li>
+                <li>Uso de freamwork: express.</li>
+            </ul>
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="node1.JPG" alt=" node1">
+                    <img src="node2.JPG" alt="node2">
+                    
+                </div>
+                <div class="carousel-buttons">
+                    <button id="prev-node">←</button>
+                    <button id="next-node">→</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div>
+            <h2>Front-end</h2>
+            <h3>User Experience UX</h3>
+            <p> Desarrollo de e-commerce, contador de visitas, página educativa en wordpress, este portafolio :) y más.</p>
+            <h3> Programación Web</h3>
+            <h3> Wordpress (en proceso)</h3>
+            <h3>Ciencia de Datos</h3>
+            <p> Análisis de datos para Uber:
+                (interpretación de unidades de medidas únicas, análisis, gráficos,
+                correlación de datos, etc.).</p>
+        </div>
+    </div>
+
+    <div id="bubbles"></div>
+
+    <script>
+        // Carrusel JS - Primer carrusel
+        const images1 = document.querySelector('.carousel-images');
+        const totalImages1 = images1.children.length;
+        let currentIndex1 = 0;
+    
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex1 = (currentIndex1 + 1) % totalImages1;
+            updateCarousel1();
+        });
+    
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex1 = (currentIndex1 - 1 + totalImages1) % totalImages1;
+            updateCarousel1();
+        });
+    
+        // Función para actualizar el primer carrusel
+        function updateCarousel1() {
+            const offset = -currentIndex1 * 100; 
+            images1.style.transform = `translateX(${offset}%)`;
+        }
+    
+        // Carrusel JS - Segundo carrusel
+        const images2 = document.querySelectorAll('.carousel')[1].querySelector('.carousel-images');
+        const totalImages2 = images2.children.length;
+        let currentIndex2 = 0;
+    
+        document.getElementById('next-java').addEventListener('click', () => {
+            currentIndex2 = (currentIndex2 + 1) % totalImages2;
+            updateCarousel2();
+        });
+    
+        document.getElementById('prev-java').addEventListener('click', () => {
+            currentIndex2 = (currentIndex2 - 1 + totalImages2) % totalImages2;
+            updateCarousel2();
+        });
+    
+        // Función para actualizar el segundo carrusel
+        function updateCarousel2() {
+            const offset = -currentIndex2 * 100; 
+            images2.style.transform = `translateX(${offset}%)`;
+        }
+
+         // Carrusel JS - Segundo carrusel
+        const images3 = document.querySelectorAll('.carousel')[2].querySelector('.carousel-images');
+        const totalImages3 = images3.children.length;
+        let currentIndex3 = 0;
+    
+        document.getElementById('next-node').addEventListener('click', () => {
+            currentIndex3 = (currentIndex3 + 1) % totalImages3;
+            updateCarousel3();
+        });
+    
+        document.getElementById('prev-node').addEventListener('click', () => {
+            currentIndex3 = (currentIndex3 - 1 + totalImages3) % totalImages3;
+            updateCarousel3();
+        });
+    
+        // Función para actualizar el tercer carrusel
+        function updateCarousel3() {
+            const offset = -currentIndex3 * 100; 
+            images3.style.transform = `translateX(${offset}%)`;
+        }
+    
+
+        // Burbujas
+        function createBubbles() {
+            const bubbleCount = 30; 
+            const container = document.getElementById('bubbles');
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                const size = Math.random() * 50 + 20; 
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.animationDuration = `${Math.random() * 3 + 2}s`; 
+
+                container.appendChild(bubble);
+
+                setTimeout(() => {
+                    bubble.remove();
+                }, 5000); 
+            }
+        }
+
+        window.onload = createBubbles;
+    </script>
+
+</body>
+</html>
+

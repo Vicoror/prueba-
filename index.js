@@ -5,25 +5,33 @@ const cors = require("cors");
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: "*", // Permite llamadas desde cualquier dominio
+  methods: ["POST"],
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Ruta para enviar correo
 app.post("/send-email", async (req, res) => {
-    const { to, subject, text } = req.body;
+  const { to, subject, text } = req.body;
 
-    try {
-        let info = await emailHelper(to, subject, text);
-        res.status(200).send(`Email sent: ${info.response}`);
-    } catch (error) {
-        res.status(500).send("Error sending email");
-    }
+  try {
+    let info = await emailHelper(to, subject, text);
+    res.status(200).json({ message: `Email sent: ${info.response}` });
+  } catch (error) {
+    res.status(500).json({ error: "Error sending email", details: error.message });
+  }
 });
 
 // Inicia el servidor
-app.listen(3001, () => {
-    console.log("Server is running on http://localhost:3001");
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 
